@@ -4,21 +4,26 @@
 
 int main() {
 
-    int x;                          // x will store the first number entered by the user
-    int y;                          // y will store the second number entered by the user
+    char name[100];                 // name will store the user's name
+    char color[100];                // color will store the user's favorite color
     char s[100];                    // s is used to pause the console
 
-    /* Ask for the first number and print it out */
-    printf("Enter a number: ");     // prompt the user to enter the first number
-    scanf("%d", &x);                // read the first number from the console
-    fgets(s, 100, stdin);           // remove the newline left by scanf
-    printf("You entered %d\n", x);  // print the first number entered by the user
+    /* Ask for the user's name */
+    printf("What is your name?  "); // prompt the user to enter their name
+    scanf("%s", name);              // read the user's name
 
-    /* Ask for one more number and print it out */
-    printf("Enter one more number: ");       // prompt the user to enter the second number
-    scanf("%d", &y);                         // read the second number from the console
-    fgets(s, 100, stdin);                    // remove the newline left by scanf
-    printf("Your second number was %d\n", y); // print the second number entered by the user
+    /* Print the first output */
+    printf("\n%s?  That's a funny name\n", name); // print a funny response using the name
+
+    /* Ask for one more input */
+    printf("What is your favorite color?  ");     // prompt the user to enter one more input
+    scanf("%s", color);                           // read the user's favorite color
+
+    /* Print one more output */
+    printf("%s is a nice color\n", color);        // print one more output using the color
+
+    /* Remove the leftover newline from scanf */
+    fgets(s, 100, stdin);           // remove the leftover Enter key from scanf
 
     /* Pause the console so we can look at it before it vanishes */
     fgets(s, 100, stdin);           // wait for the user to press Enter before exiting
