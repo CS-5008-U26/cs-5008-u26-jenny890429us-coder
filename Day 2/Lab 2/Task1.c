@@ -14,7 +14,7 @@ int main() {
     scanf("%d", &number);
 
     // Repeat while there are still digits left in the number
-    while (number > 0) {
+    while (number != 0) {
         digit = number % 10;      // Get the rightmost digit
         sum = sum + digit;        // Add the digit to the total sum
         number = number / 10;     // Remove the rightmost digit
