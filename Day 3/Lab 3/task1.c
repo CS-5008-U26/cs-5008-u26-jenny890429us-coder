@@ -28,12 +28,15 @@ int isHarshad(int x) {
 
 int main() {
 
+    char s[100];
+
     // Print all 2-digit Harshad numbers.
     for (int number = 10; number <= 99; number++) {
         if (isHarshad(number)) {
             printf("%d\n", number);
         }
     }
-
+    
+    fgets(s, 100, stdin);
     return 0;
 }

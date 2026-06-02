@@ -2,7 +2,8 @@
 #include <time.h>
 
 int main() {
-
+    
+    char s[100];
     // Store the time when the program starts.
     time_t start = time(NULL);
 
@@ -36,6 +37,7 @@ int main() {
 
     // Print only the highest Fibonacci number found after 5 seconds.
     printf("The highest Fibonacci number found was F(%d) = %lld\n", highestN, highestValue);
-
+    
+    fgets(s, 100, stdin);
     return 0;
 }
