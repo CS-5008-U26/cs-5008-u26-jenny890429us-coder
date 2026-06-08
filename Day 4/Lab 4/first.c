@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 
+
 void first (char *someText) {
     printf ("%s ", someText);
 }
