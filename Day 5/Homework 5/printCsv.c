@@ -2,7 +2,7 @@
 // Include the standard input and output library.
 
 #include <string.h>
-// Include the string library for strlen and strncpy.
+// Include the string library for strlen
 
 void killNewline(char *str)
 // This function removes the newline character from the end of a string.
