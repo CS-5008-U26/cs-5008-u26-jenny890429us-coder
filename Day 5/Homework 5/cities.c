@@ -2,6 +2,8 @@
 #include <stdlib.h>     // for atoi and atof
 #include <string.h>     // for strcpy
 
+#define MAX_LINE 10000  // large enough for long CSV lines
+
 // Get one field from a CSV line.
 // fieldNumber starts at 1.
 // Example: fieldNumber 2 means the second column.
@@ -29,14 +31,16 @@ void getField(char line[], int fieldNumber, char result[]) {
         i++;
     }
 
-    // Reset j before copying the field.
+    // Start copying the field.
     j = 0;
+    inQuotes = 0;
 
     // Copy the field into result.
     while (line[i] != '\0') {
 
         // If we see a quote, skip it.
         if (line[i] == '"') {
+            inQuotes = !inQuotes;
             i++;
         }
 
@@ -64,33 +68,33 @@ void getField(char line[], int fieldNumber, char result[]) {
 }
 
 int main() {
-    FILE *inFile;              // file pointer
-    char line[1000];           // one line from the file
+    FILE *inFile;                 // file pointer
+    char line[MAX_LINE];          // one full line from the CSV file
 
-    char city[100];            // city name
-    char latitudeString[100];  // latitude as a string
-    char populationString[100];// population as a string
+    char city[100];               // city name
+    char latitudeString[100];     // latitude as a string
+    char populationString[100];   // population as a string
 
-    char northernCity[100];    // northernmost city name
+    char northernCity[100];       // northernmost city name
 
-    int count = 0;             // how many city lines we processed
-    int population;            // population of one city
+    int count = 0;                // how many city lines we processed
+    int population;               // population of one city
     long long populationSum = 0;  // total population
 
-    double latitude;           // latitude of one city
+    double latitude;              // latitude of one city
     double northernLatitude = -1000.0; // very small starting latitude
 
-    char s[100];               // used to pause at the end for Windows
+    char s[100];                  // used to pause at the end for Windows
 
     // Open the CSV file.
-    // This works because uscities.csv is in the same folder as cities.c.
+    // Make sure uscities.csv is in the same folder as cities.c.
     inFile = fopen("uscities.csv", "r");
 
     // Check if the file opened successfully.
     if (inFile == NULL) {
         printf("Could not open file.\n");
 
-        // Pause for Windows.
+        // Pause before closing on Windows.
         fgets(s, 100, stdin);
 
         return 1;
@@ -98,10 +102,10 @@ int main() {
 
     // Read and ignore the first line.
     // The first line is the header.
-    fgets(line, 1000, inFile);
+    fgets(line, MAX_LINE, inFile);
 
     // Read only the next 20 city lines.
-    while (count < 20 && fgets(line, 1000, inFile) != NULL) {
+    while (count < 20 && fgets(line, MAX_LINE, inFile) != NULL) {
 
         // Column 2 is city_ascii.
         getField(line, 2, city);
@@ -126,6 +130,10 @@ int main() {
             northernLatitude = latitude;
             strcpy(northernCity, city);
         }
+
+        // This line is for testing.
+        // It helps check that the city, latitude, and population are correct.
+        // printf("%d: %s, %s, %s\n", count + 1, city, latitudeString, populationString);
 
         // We processed one more city.
         count++;
