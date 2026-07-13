@@ -1,0 +1,9 @@
+10-SECOND N VALUES
+
+                    RANDOM          SORTED                              REVERSE
+BUBBLE SORT         70000           >2147483647 (exceeds int limit)    90000
+SELECTION SORT      130000          120000                              120000
+INSERTION SORT      170000          >2147483647 (exceeds int limit)    120000
+MERGE SORT          58000000        128000000                           128000000
+QUICK SORT          80000000        400000000                           400000000
+BST SORT            9400000         50000                               50000
