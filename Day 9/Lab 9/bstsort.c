@@ -5,6 +5,13 @@
  * after sorting, all tree nodes are freed.
  */
 
+/*
+ * Task 2 Answer:
+ * The 10-Second N with freeing the BST nodes was approximately 9,000,000.
+ * I noticed that freeing the nodes significantly slowed down the BST sort
+ * because freeBst() must traverse the entire tree and free every node.
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
